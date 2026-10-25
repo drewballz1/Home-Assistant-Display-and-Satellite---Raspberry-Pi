@@ -1,0 +1,60 @@
+<!doctype html><html><head><meta charset="utf-8">
+<style>html,body{margin:0;background:#fff;font-family:'DejaVu Sans',sans-serif}#wrap{position:relative}
+svg{position:absolute;left:0;top:0}.lab{font:bold 22px 'DejaVu Sans'}</style>
+<script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
+</head><body><div id="wrap"><canvas id="c"></canvas><svg id="o"></svg></div>
+<script type="module">
+import * as THREE from 'three';
+import {STLLoader} from 'three/addons/loaders/STLLoader.js';
+window.renderScene = async (S) => {
+  const W=S.w||1400,H=S.h||1000;
+  const r=new THREE.WebGLRenderer({canvas:document.getElementById('c'),antialias:true,preserveDrawingBuffer:true});
+  r.setPixelRatio(1); r.setSize(W,H); r.setClearColor(S.bg||'#ffffff'); r.localClippingEnabled=true;
+  r.shadowMap.enabled=true; r.shadowMap.type=THREE.PCFSoftShadowMap;
+  const sc=new THREE.Scene();
+  // Z-up world
+  THREE.Object3D.DEFAULT_UP.set(0,0,1);
+  const cam=new THREE.PerspectiveCamera(S.fov||30,W/H,1,5000); cam.up.set(0,0,1);
+  cam.position.set(...S.cam); cam.lookAt(new THREE.Vector3(...S.target));
+  sc.add(new THREE.HemisphereLight(0xffffff,0x9a9aa0,S.hemi||2.3));
+  const d1=new THREE.DirectionalLight(0xffffff,S.keyI||2.4); d1.position.set(...(S.key||[-300,-400,600])); sc.add(d1);
+  d1.castShadow=!!S.shadow; d1.shadow.mapSize.set(2048,2048); const sh=d1.shadow.camera; sh.left=-250;sh.right=250;sh.top=250;sh.bottom=-250;sh.near=1;sh.far=2000; d1.shadow.bias=-0.0005;
+  const d2=new THREE.DirectionalLight(0xffffff,0.7); d2.position.set(...(S.fill||[400,300,200])); sc.add(d2);
+  const clips=(S.clip||[]).map(c=>new THREE.Plane(new THREE.Vector3(...c.n),c.d));
+  const ld=new STLLoader();
+  for(const p of S.parts){
+    const buf=await (await fetch(p.f)).arrayBuffer(); const g=ld.parse(buf); g.computeVertexNormals();
+    const pc=p.noclip?[]:clips;
+    const mat=new THREE.MeshStandardMaterial({color:p.c,roughness:p.rough??0.7,metalness:p.metal??0.0,side:THREE.DoubleSide,
+       transparent:p.o!==undefined,opacity:p.o??1,clippingPlanes:pc,flatShading:false,polygonOffset:true,polygonOffsetFactor:1,polygonOffsetUnits:1});
+    const m=new THREE.Mesh(g,mat); if(p.off) m.position.set(...p.off); m.castShadow=!!S.shadow; m.receiveShadow=false; sc.add(m);
+    if(p.e!==false){ const eg=new THREE.EdgesGeometry(g,p.ea||28);
+      const lm=new THREE.LineSegments(eg,new THREE.LineBasicMaterial({color:p.ec||'#222',transparent:true,opacity:p.eo??0.55,clippingPlanes:pc})); if(p.off) lm.position.set(...p.off); sc.add(lm);}
+    if(p.cap && clips.length){ // section cap: stencil trick
+      const pl=clips[0];
+      const mk=(side,op)=>{const mm=new THREE.MeshBasicMaterial({side,clippingPlanes:[pl],colorWrite:false,depthWrite:false,depthTest:false,stencilWrite:true,stencilFunc:THREE.AlwaysStencilFunc,stencilFail:op,stencilZFail:op,stencilZPass:op});const x=new THREE.Mesh(g,mm);x.renderOrder=1;if(p.off)x.position.set(...p.off);return x};
+      sc.add(mk(THREE.BackSide,THREE.IncrementWrapStencilOp)); sc.add(mk(THREE.FrontSide,THREE.DecrementWrapStencilOp));
+      const capM=new THREE.MeshStandardMaterial({color:p.cap,roughness:0.8,stencilWrite:true,stencilRef:0,stencilFunc:THREE.NotEqualStencilFunc,stencilFail:THREE.ReplaceStencilOp,stencilZFail:THREE.ReplaceStencilOp,stencilZPass:THREE.ReplaceStencilOp,side:THREE.DoubleSide});
+      const cg=new THREE.PlaneGeometry(1000,1000); const cap=new THREE.Mesh(cg,capM); pl.coplanarPoint(cap.position); cap.lookAt(cap.position.clone().sub(pl.normal)); cap.renderOrder=1.1;
+      cap.onAfterRender=(rr)=>rr.clearStencil(); sc.add(cap);
+    }
+  }
+  if(S.ground){ const gm=new THREE.Mesh(new THREE.PlaneGeometry(2000,2000),new THREE.ShadowMaterial({opacity:0.18})); gm.position.z=S.ground; gm.receiveShadow=true; sc.add(gm);}
+  r.render(sc,cam);
+  // labels: L.p = [x,y,z] or list of points; L.at = [px,py] absolute box anchor (box grows away from the points)
+  const svg=document.getElementById('o'); svg.setAttribute('width',W); svg.setAttribute('height',H); let h='';
+  const pr=p=>{const v=new THREE.Vector3(...p).project(cam); return [(v.x+1)/2*W,(1-v.y)/2*H]};
+  for(const L of (S.labels||[])){
+    const pts=(Array.isArray(L.p[0])?L.p:[L.p]).map(pr);
+    const lines=L.t.split('\n'); const fs=S.fs||22;
+    const tw=Math.max(...lines.map(s=>s.length))*fs*0.665+20, th=lines.length*fs*1.25+14;
+    const [tx,ty]=L.at; const left = tx < pts[0][0];
+    let bx = left? tx-tw : tx; bx=Math.max(8,Math.min(W-tw-8,bx)); const by = ty-th/2; const lx = left? bx+tw : bx;
+    for(const [x,y] of pts) h+=`<line x1="${x}" y1="${y}" x2="${lx}" y2="${ty}" stroke="#c0392b" stroke-width="2.5"/><circle cx="${x}" cy="${y}" r="5" fill="none" stroke="#c0392b" stroke-width="2.5"/>`;
+    h+=`<rect x="${bx}" y="${by}" width="${tw}" height="${th}" rx="5" fill="#fff3c4" stroke="#c9a227" stroke-width="2.5"/>`;
+    lines.forEach((s,i)=>h+=`<text x="${bx+10}" y="${by+fs*1.1+4+i*fs*1.25}" fill="#141414" style="font:bold ${fs}px 'DejaVu Sans'">${s.replace(/&/g,'&amp;').replace(/</g,'&lt;')}</text>`);
+  }
+  svg.innerHTML=h; return true;
+};
+window.ready=true;
+</script></body></html>

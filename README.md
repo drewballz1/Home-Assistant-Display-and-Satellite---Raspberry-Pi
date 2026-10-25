@@ -4,6 +4,8 @@ A desk stand for the **Raspberry Pi Touch Display 2 (7", landscape)** that house
 
 ![Overview](images/overview.png)
 
+![Back of the stand](images/back-features.png)
+
 > **Remix notice.** This is a remix of **["Guition 4 inch Screen Frame and Stand (ESP32-S3-4848S040)" by MegaAndy](https://www.printables.com/model/1881011-guition-4-inch-screen-frame-and-stand-esp32-s3-4848s040)** on Printables. The frame band, wedge stand shape, snap tabs/grooves, rear cable hole, weighted base and foot recess all come from that design. The original STLs were stretched (not scaled) so every tested feature keeps its original size. This remix is shared under the same licence: **attribution required, non-commercial use only**.
 
 ## Print set (`stl/`)
@@ -58,9 +60,11 @@ Bed of at least 200 × 130 mm. PLA or PETG, 0.4 mm nozzle. Print the stand at hi
 6. 2 mm foam tape on the spacer ring, display on the ring, frame snapped on (feed cables first).
 7. Side cover on; rubber feet on the base.
 
+![Inside the stand](images/inside-mounts.png)
+![MUTE button, USR button and mics](images/mute-button.png)
 ![Speaker assembly](images/speaker-assembly.png)
-![Inside mounts](images/inside-mounts.png)
-![Mute button](images/mute-button.png)
+![Speaker box](images/speaker-box-sections.png)
+![Pi ports cover](images/pi-ports-cover.png)
 
 ## Check before printing
 
@@ -78,7 +82,7 @@ These were designed from published CAD / drawings and need a quick check against
 
 ## Source (`source/`)
 
-OpenSCAD + Python (trimesh / manifold3d) build scripts. `stretch.py` performs the feature-preserving stretch of the original STLs (download them from the original Printables page — they are not redistributed here). `td2-stand-additions.scad` holds the added features and their parameters; `compose.py` assembles the stand; `spkbox2.py`, `door.py`, `frame_corners.py` build the other parts; `check.py` / `check2.py` run the clearance checks.
+OpenSCAD + Python (trimesh / manifold3d) build scripts. `stretch.py` performs the feature-preserving stretch of the original STLs (download them from the original Printables page — they are not redistributed here). `td2-stand-additions.scad` holds the added features and their parameters; `compose.py` assembles the stand; `spkbox2.py`, `door.py`, `frame_corners.py` build the other parts; `check.py` / `check2.py` run the clearance checks. `render/` holds the three.js renderer used for the images in `images/`.
 
 Dimensions were taken from: the Raspberry Pi Touch Display 2 product brief, Seeed's ReSpeaker Lite v1.1 STEP model, and Adafruit's CAD parts library. Those source files are not included.
 
