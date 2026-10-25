@@ -4,7 +4,7 @@ A desk stand for the **Raspberry Pi Touch Display 2 (7", landscape)** that house
 
 ![Overview](images/overview.png)
 
-> **Remix notice.** This is a remix of **["Guition 4 inch Screen Frame and Stand (ESP32-S3-4848S040)" by MegaAndy](https://www.printables.com/model/1881011-guition-4-inch-screen-frame-and-stand-esp32-s3-4848s040)** on Printables, licensed **CC BY-NC 4.0**. The frame band, wedge stand shape, snap tabs/grooves, rear cable hole, weighted base and foot recess all come from that design. The original STLs were stretched (not scaled) so every tested feature keeps its original size. This remix is shared under the same licence: **attribution required, non-commercial use only**.
+> **Remix notice.** This is a remix of **["Guition 4 inch Screen Frame and Stand (ESP32-S3-4848S040)" by MegaAndy](https://www.printables.com/model/1881011-guition-4-inch-screen-frame-and-stand-esp32-s3-4848s040)** on Printables. The frame band, wedge stand shape, snap tabs/grooves, rear cable hole, weighted base and foot recess all come from that design. The original STLs were stretched (not scaled) so every tested feature keeps its original size. This remix is shared under the same licence: **attribution required, non-commercial use only**.
 
 ## Print set (`stl/`)
 
