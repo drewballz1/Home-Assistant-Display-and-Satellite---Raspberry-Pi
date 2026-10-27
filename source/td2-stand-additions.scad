@@ -1,4 +1,3 @@
-// Remix of "Guition 4 inch Screen Frame and Stand" by MegaAndy (Printables), CC BY-NC 4.0
 // Additions to the stretched original stand (MegaAndy "Guition 4 inch Screen Frame and Stand" v2,
 // no-side-cable-hole version), stretched to fit the Raspberry Pi Touch Display 2 (7") in landscape.
 // Coordinates: "use" orientation — desk at z = 0, screen at the front (-y), x = width.
@@ -135,7 +134,7 @@ module spk_screw_holes() {   // M3 countersunk, from outside: clearance through 
     for (i = [-1, 1], j = [-1, 1])
         on_wall(spk_x + i*spk_tab/2, spk_s + j*spk_tab/2) {
             translate([0,0,-5]) cylinder(d = 3.4, h = spk_pad + 6);
-            translate([0,0,-1.8 - 0.01]) cylinder(d1 = 6.4, d2 = 3.4, h = 1.6);   // countersink in the 1.8 mm wall
+            translate([0,0,-2.4]) cylinder(d1 = 7.51, d2 = 3.4, h = 2.19);   // countersink: Ø6.4 at the outer face (Z = -1.80), starts outside the wall so no skin is left
         }
 }
 module spk_grille() {   // vertical slots like the vents, clipped to a circle

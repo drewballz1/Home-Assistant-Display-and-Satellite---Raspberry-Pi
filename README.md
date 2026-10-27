@@ -82,7 +82,7 @@ These were designed from published CAD / drawings and need a quick check against
 
 ## Source (`source/`)
 
-OpenSCAD + Python (trimesh / manifold3d) build scripts. `stretch.py` performs the feature-preserving stretch of the original STLs (download them from the original Printables page — they are not redistributed here). `td2-stand-additions.scad` holds the added features and their parameters; `compose.py` assembles the stand; `spkbox2.py`, `door.py`, `frame_corners.py` build the other parts; `check.py` / `check2.py` run the clearance checks. `render/` holds the three.js renderer used for the images in `images/`.
+OpenSCAD + Python (trimesh / manifold3d) build scripts. `stretch.py` performs the feature-preserving stretch of the original STLs (download them from the original Printables page — they are not redistributed here). `td2-stand-additions.scad` holds the added features and their parameters; `compose.py` assembles the stand; `spkbox2.py`, `door.py`, `frame_corners.py` build the other parts; `check.py` / `check2.py` run the clearance checks. `fix_planar.py` repairs triangles the stretch folds over on flat faces (run on the stretched base and on the composed stand); `folds.py` and `thin.py` check every part for fold-overs and sub-0.2 mm skins. `render/` holds the three.js renderer used for the images in `images/`.
 
 Dimensions were taken from: the Raspberry Pi Touch Display 2 product brief, Seeed's ReSpeaker Lite v1.1 STEP model, and Adafruit's CAD parts library. Those source files are not included.
 
