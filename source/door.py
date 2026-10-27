@@ -29,9 +29,12 @@ for a,b in edges:
     tri = Polygon([mid-0.7*n-6*d, mid-0.7*n+6*d, mid+0.3*n+6*d, mid+0.3*n-6*d])
     bump = ext(tri, XI-0.55, XI-0.05)
     door = door.union(bump, engine='manifold')
-# fingernail notch on the front-lower edge of the plate
+# fingernail notch: on the UNDERSIDE of the plate overhang at the front-lower corner,
+# leaving a 0.6 mm gap between plate and wall to get a nail under; top face stays clean
+from shapely.geometry import Point
 fc = np.array(plate_poly.exterior.coords); lowfront = fc[np.argmin(fc[:,0]+fc[:,1])]
-notch = trimesh.creation.box(extents=[1.0, 8, 8]); notch.apply_translation([XO+1.2, lowfront[0]+1.5, lowfront[1]+1.5])
+scoop = Point(lowfront).buffer(7.0).intersection(plate_poly.buffer(1.0).difference(W.buffer(0.5, join_style=2)))
+notch = ext(scoop, XO-0.05, XO+0.6)
 door = door.difference(notch, engine='manifold')
 print('door watertight', door.is_watertight, 'bodies', len(door.split(only_watertight=False)), 'size', door.extents.round(1))
 door.export('door_use.stl')

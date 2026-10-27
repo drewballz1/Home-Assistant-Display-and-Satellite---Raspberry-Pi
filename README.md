@@ -43,7 +43,7 @@ Bed of at least 200 × 130 mm. PLA or PETG, 0.4 mm nozzle. Print the stand at hi
 - **Original look**: thin snap-on frame band and wedge stand, scaled up for a 7" landscape screen. Five snap tabs per long edge (three added, copied exactly from the original geometry).
 - **Display clamp**: a spacer ring on the stand takes the 6.45 mm glass; 2 mm foam tape on the ring absorbs the ±0.5 mm tolerance. Frame corners match the glass's 8 mm radius.
 - **Pi 5** on four printed standoffs on the back wall; USB-C power port sits right above the rear cable hole. Fit the microSD card before mounting.
-- **Pi ports access**: clip-on cover on the right side (as you face the screen) over the USB / Ethernet end. See `images/pi-ports-cover.png`.
+- **Pi ports access**: clip-on cover on the right side (as you face the screen) over the USB / Ethernet end; lift it off with a fingernail at the notch under its lower front corner. See `images/pi-ports-cover.png`.
 - **ReSpeaker Lite** on two M2 standoffs, mics sealed to two back-wall pinholes with small foam squares on raised pads.
 - **MUTE** is a press-in flexure button printed into the back wall (with grip ridges); **USR** is a poke hole. Both engraved.
 - **3" speaker** in its own sealed box (~160 cm³), clamped by four screws from the back; grille in the back wall.

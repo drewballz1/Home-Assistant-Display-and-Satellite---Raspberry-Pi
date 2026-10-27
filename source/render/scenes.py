@@ -81,7 +81,7 @@ pc_cam=[560,110,150]; pc_t=[80,42,42]
 S.append(dict(out='raw_pc_closed.png',w=1300,h=950,fov=22,cam=pc_cam,target=pc_t,parts=[stand,frame,glass,door]+pi,
   labels=[dict(p=[95.8,48,44],t='Clip-on cover\n(plain, no text)',at=[1000,150])]))
 S.append(dict(out='raw_pc_open.png',w=1300,h=950,fov=22,cam=pc_cam,target=pc_t,parts=[stand,frame,glass,P('door',C['door'],off=[30,-100,-5])]+pi,
-  labels=[dict(p=[77,40,45],t='USB + Ethernet\n(right-angle USB-A plug)',at=[300,170]),dict(p=[126,-52,57],t='Cover: snap rim +\nfingernail notch',at=[1000,820])]))
+  labels=[dict(p=[77,40,45],t='USB + Ethernet\n(right-angle USB-A plug)',at=[300,170]),dict(p=[126,-52,57],t='Cover: snap rim; nail\nnotch on the underside',at=[1000,820])]))
 # ---------- speaker box: rim side + section through the mounted box
 bc=np.array([-52,40,45])
 S.append(dict(out='raw_box.png',w=1000,h=900,fov=24,cam=v(bc+300*(-nw)+np.array([-120,0,90])),target=v(bc),parts=[P('box',C['box'])],
