@@ -31,9 +31,7 @@ Bed of at least 200 × 130 mm. PLA or PETG, 0.4 mm nozzle. Print the stand at hi
 | Adafruit 3" speaker, 4 Ω 3 W | |
 | JST-PH 2.0 mm 2-pin lead | speaker → ReSpeaker |
 | Short USB-A → USB-C **data** cable, **right-angle on both ends** | Pi → ReSpeaker; the Pi's USB ports have 21 mm to the side cover |
-| 4 × M2.5 × 6 self-tapping | Pi standoffs |
-| 2 × M2 × 5 self-tapping | ReSpeaker standoffs |
-| 4 × M3 × 16 countersunk self-tapping | from the back, through wall + speaker tabs into the speaker box |
+| 10 × M2 × 5 pan-head self-tapping | the only screw in the build: 4 for the Pi, 2 for the ReSpeaker, 4 from the back into the speaker box (heads sit in recessed holes) |
 | Foam tape: 2 mm (spacer ring), 1 mm (mic squares), 3 mm ring (speaker front), thin gasket (box rim) | |
 | Optional: 1" × ½" steel flat bar, 3¾" long (~240 g) | weight pocket in the base |
 | Optional: rubber feet, hot glue | |
@@ -53,9 +51,9 @@ Bed of at least 200 × 130 mm. PLA or PETG, 0.4 mm nozzle. Print the stand at hi
 ## Assembly order
 
 1. Flash the microSD and insert it into the Pi.
-2. Speaker: solder the JST lead (leave a little slack inside the box, tack it with hot glue), 3 mm foam ring on the wall around the grille, speaker face-down on its pads, gasket on the box rim, box over the speaker, four M3 × 16 screws from the back. Seal the wire hole with hot glue.
-3. ReSpeaker: foam squares on the two mic pads, pierce at the pinholes, board on its standoffs (mics to the wall), two M2 screws.
-4. Pi: four M2.5 screws. Connect the ReSpeaker (USB), speaker (JST-PH), display ribbon (300 mm, fold the slack flat) and the display's GPIO power lead.
+2. Speaker: solder the JST lead (leave a little slack inside the box, tack it with hot glue), 3 mm foam ring on the wall around the grille, speaker face-down on its pads, gasket on the box rim, box over the speaker, four M2 × 5 screws from the back (into the recessed holes). Seal the wire hole with hot glue.
+3. ReSpeaker: foam squares on the two mic pads, pierce at the pinholes, board on its standoffs (mics to the wall), two M2 × 5 screws.
+4. Pi: four M2 × 5 screws. Connect the ReSpeaker (USB), speaker (JST-PH), display ribbon (300 mm, fold the slack flat) and the display's GPIO power lead.
 5. Weight bar into its pocket (dab of hot glue).
 6. 2 mm foam tape on the spacer ring, display on the ring, frame snapped on (feed cables first).
 7. Side cover on; rubber feet on the base.

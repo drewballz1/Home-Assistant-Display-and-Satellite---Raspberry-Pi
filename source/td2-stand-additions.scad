@@ -16,7 +16,7 @@ spacer   = cavity - glass_max - foam_min;   // = 4.55: foam takes up 5.95-6.95 m
 pi_x0     = -11.2;  // Pi left edge (x); puts the Pi's USB-C right above the rear cable hole
 pi_s0     = 15;     // Pi bottom edge, measured up the back wall from the floor
 standoff  = 5;      // standoff height off the wall
-screw_d   = 2.2;    // M2.5 self-tapping pilot (use 3.6 for M2.5 heat-set inserts)
+screw_d   = 1.6;    // M2 self-tapping pilot (one screw size throughout: M2 x 5 pan head)
 boss_d    = 6.5;
 tail      = 12;     // printable tail length
 
@@ -36,7 +36,8 @@ spk_s  = 42;       // centre, up the back wall
 spk_sq = 77.8;
 spk_tab = 60;      // [CHECK] tab hole pattern (assumed 60 x 60 square)
 spk_pad = 3;       // pads the frame screws into; seal the gap with 3 mm foam ring
-spk_screw_d = 2.6; // M3 self-tapping
+spk_seat = 1.5;    // screw head seat, measured from the inner wall face into the pad (leaves 1.5 mm under the head)
+spk_screw_d = 1.6; // M2 self-tapping pilot in the speaker box
 grille_d = 66;     // grille opening over the cone
 
 // ---------- ReSpeaker Lite v1.1 (from Seeed's STEP model) ----------
@@ -130,11 +131,11 @@ module spk_pads() {   // pads the speaker frame sits on (screws come in from the
             translate([-3.5, 3.5 + 8, -1]) cube([7, 0.01, 1]);
         }
 }
-module spk_screw_holes() {   // M3 countersunk, from outside: clearance through wall + pad
+module spk_screw_holes()   {   // M2 x 5 pan head from outside: counterbore to a seat 1.5 mm into the pad, clearance through the rest
     for (i = [-1, 1], j = [-1, 1])
         on_wall(spk_x + i*spk_tab/2, spk_s + j*spk_tab/2) {
-            translate([0,0,-5]) cylinder(d = 3.4, h = spk_pad + 6);
-            translate([0,0,-2.4]) cylinder(d1 = 7.51, d2 = 3.4, h = 2.19);   // countersink: Ø6.4 at the outer face (Z = -1.80), starts outside the wall so no skin is left
+            translate([0,0,-2.4]) cylinder(d = 4.4, h = 2.4 + spk_seat, $fn = 40);      // head recess (M2 pan head is ~3.8 mm)
+            translate([0,0,-1]) cylinder(d = 2.4, h = spk_pad + 2, $fn = 24);           // clearance
         }
 }
 module spk_grille() {   // vertical slots like the vents, clipped to a circle

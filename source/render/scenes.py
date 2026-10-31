@@ -21,7 +21,7 @@ L=[dict(p=wp(-45,96,-1.8),t='Exhaust holes',at=[1380,170]),
    dict(p=wp(-1.47,81.5,-2.3),t='MUTE button',at=[1380,290]),
    dict(p=wp(6.22,80.74,-1.8),t='USR poke hole',at=[1380,380]),
    dict(p=wp(-52.15,30,-2),t='Speaker grille',at=[1380,640]),
-   dict(p=[wp(-52.15+i*30,42+j*30,-1.8) for i in [-1,1] for j in [-1,1]],t='Speaker box screws\n4x M3, countersunk',at=[1380,850]),
+   dict(p=[wp(-52.15+i*30,42+j*30,1.5) for i in [-1,1] for j in [-1,1]],t='Speaker box screws\n4x M2 x 5, recessed',at=[1380,850]),
    dict(p=wp(0,8,-1.8),t='Rear cable hole\n(Pi USB-C power)',at=[1380,1030]),
    dict(p=[wp(0.49,92,-1.8),wp(71.49,92,-1.8)],t='Mic pinholes (2)',at=[330,150]),
    dict(p=wp(80,44,-1.8),t='"PI PORTS" label',at=[330,560]),
@@ -53,7 +53,7 @@ Lm=[dict(p=[wp(-5+2.46,75+31.56,3),wp(-5+60.16,75+2.66,3)],t='ReSpeaker standoff
     dict(p=[wp(-5+5.49,92,0.9),wp(-5+76.49,92,0.9)],t='Mic pads',at=[1380,220]),
     dict(p=wp(-1.47,80.74,0.1),t='MUTE tab',at=[1380,320]),
     dict(p=[40,40,14],t='Weight pocket\n(opens at the back)',at=[1380,720]),
-    dict(p=[wp(-11.2+a,15+b,5) for a in [3.5,61.5] for b in [3.5,52.5]],t='Pi 5 standoffs (4, M2.5)',at=[1380,950]),
+    dict(p=[wp(-11.2+a,15+b,5) for a in [3.5,61.5] for b in [3.5,52.5]],t='Pi 5 standoffs (4, M2)',at=[1380,950]),
     dict(p=[wp(-52.15+i*30,42+j*30,3) for i in [-1,1] for j in [-1,1]],t='Speaker pads (4)',at=[330,170]),
     dict(p=wp(-52.15,42,0),t='Speaker grille',at=[330,400]),
     dict(p=[20,-0.2,9.2],t='Spacer ring\n(display rests here)',at=[330,960])]
@@ -74,7 +74,7 @@ Ls=[dict(p=wp(-52.15,30,0),t='Grille in the back wall',at=[330,900]),
     dict(p=v(np.array(wp(-52.15,42,60))+175*e),t='Speaker box (~160 cm³),\nthin gasket on the rim',at=[1380,120])]
 S.append(dict(out='raw_spk_ex.png',w=W1,h=1100,fov=19,cam=[-600,-680,470],target=[-55,-45,55],parts=ex,labels=Ls))
 sc=[stand,frame,glass,door,P('screws',C['screw'],metal=0.6,rough=0.3,off=O(-nw,22))]
-Lsc=[dict(p=[v(np.array(wp(-52.15+i*30,42+j*30,-1.8))+22*(-nw)) for i in [-1,1] for j in [-1,1]],t='4x M3 x 16 countersunk\nself-tapping, from the back',at=[1300,140])]
+Lsc=[dict(p=[v(np.array(wp(-52.15+i*30,42+j*30,1.5))+22*(-nw)) for i in [-1,1] for j in [-1,1]],t='4x M2 x 5 pan head, from the\nback into recessed holes',at=[1300,140])]
 S.append(dict(out='raw_spk_back.png',w=W1,h=1000,fov=18,cam=[-170,540,330],target=[-48,62,54],parts=sc,labels=Lsc))
 # ---------- pi ports cover: closed + removed (viewed from that side)
 pc_cam=[560,110,150]; pc_t=[80,42,42]
@@ -85,7 +85,7 @@ S.append(dict(out='raw_pc_open.png',w=1300,h=950,fov=22,cam=pc_cam,target=pc_t,p
 # ---------- speaker box: rim side + section through the mounted box
 bc=np.array([-52,40,45])
 S.append(dict(out='raw_box.png',w=1000,h=900,fov=24,cam=v(bc+300*(-nw)+np.array([-120,0,90])),target=v(bc),parts=[P('box',C['box'])],
-  labels=[dict(p=v(np.array(wp(-52.15-30,42+30,6))),t='Pilot holes (4)\nfor the M3 screws',at=[260,160]),dict(p=wp(-52.15,42,28),t='Cavity: round to fit\nthe speaker basket',at=[740,820])]))
+  labels=[dict(p=v(np.array(wp(-52.15-30,42+30,6))),t='Pilot holes (4)\nfor the M2 screws',at=[260,160]),dict(p=wp(-52.15,42,28),t='Cavity: round to fit\nthe speaker basket',at=[740,820])]))
 S.append(dict(out='raw_box_cut.png',w=1000,h=900,fov=29,cam=v(bc+np.array([-380,-90,110])),target=v(bc+np.array([0,8,2])),
   clip=[dict(n=[1,0,0],d=52.15)],parts=[P('stand',C['stand'],cap='#8f969e'),P('box',C['box'],cap='#a5682a'),P('speaker',C['spk'],metal=0.3,ea=40,eo=0.3,cap='#6c747d'),P('screws',C['screw'],metal=0.6,cap='#999'),P('foam_ring',C['foam'],cap='#d9b23f')],
   labels=[dict(p=wp(-52.15,42,40),t='Sealed box',at=[220,140]),dict(p=wp(-52.15,42+20,10),t='Speaker',at=[220,300]),dict(p=wp(-52.15,42,-1),t='Back wall + grille',at=[780,820])]))

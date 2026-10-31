@@ -32,15 +32,13 @@ pads=[box(-4,-4,0.92-1.0+1.0-1.0,4,4,0) for _ in []]
 mic=[box(mx-4,17-4,0,mx+4,17+4,1.0) for mx in [5.49,76.49]]
 # mic pad top is at pad_h=0.92 off the wall
 m=trimesh.util.concatenate(mic); m.apply_transform(W(-5,75)@tr([0,0,0.92])); out['mic_foam']=m
-# screws M3x16 countersunk, from outside the back
+# screws M2 x 5 pan head, from outside, head seated 1.5 mm into the pad (counterbore)
 sc=[]
 for i in [-1,1]:
     for j in [-1,1]:
-        h=trimesh.creation.cone(radius=3.1,height=3.1,sections=24); h.apply_transform(np.diag([1,1,-1,1.0])); h.apply_translation([0,0,1.6]); 
-        hc=box(-3.2,-3.2,-0.01,3.2,3.2,0.01)  # placeholder
-        shank=cyl(0,0,0,14.4,2.9,16)
-        head=trimesh.creation.cylinder(radius=3.1,height=1.6,sections=24); head.apply_translation([0,0,0.8])
-        scr=trimesh.util.concatenate([head, shank]); scr.apply_translation([0,0,-1.8]); scr.apply_transform(W(-52.15+i*30,42+j*30)); sc.append(scr)
+        head=trimesh.creation.cylinder(radius=1.9,height=1.4,sections=24); head.apply_translation([0,0,1.5-0.7])
+        shank=cyl(0,0,1.5,6.5,2.0,16)
+        scr=trimesh.util.concatenate([head, shank]); scr.apply_transform(W(-52.15+i*30,42+j*30)); sc.append(scr)
 out['screws']=trimesh.util.concatenate(sc)
 # weight bar 95.25 x 25.4 x 12.7 at pocket x=40
 out['bar']=box(40-47.6,44.6-25.4,7.15,40+47.6,44.6,7.15+12.7)
