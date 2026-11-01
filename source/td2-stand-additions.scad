@@ -67,9 +67,9 @@ module on_wall(x, s) {   // local frame: X = width, Y = up the wall, Z = out of 
     multmatrix([[1,0,0, x],[0,uw[1],nw[1], wall_in_y0 + s*uw[1]],[0,uw[2],nw[2], floor_top + s*uw[2]],[0,0,0,1]]) children();
 }
 
-module pi_bosses() {   // tails run up the wall (toward the apex) so they print face-down; top pair kept short to clear the ReSpeaker
+module pi_bosses() {   // tails run up the wall (toward the apex) so they print face-down
     for (hx = [3.5, 61.5], hy = [3.5, 52.5]) {
-        t = hy < 10 ? tail : max(1.5, rs_s0 - 0.5 - (pi_s0 + hy) - boss_d/2);
+        t = hy < 10 ? tail : max(1.5, rs_s0 - 0.5 - (pi_s0 + hy) - boss_d/2);   // top pair kept short to clear the ReSpeaker
         on_wall(pi_x0 + hx, pi_s0 + hy) difference() {
             hull() {
                 translate([0,0,-1]) cylinder(d = boss_d, h = standoff + 1);
@@ -100,16 +100,22 @@ module spacer_ring() {   // in original STL coords, moved into use coords. Chamf
     }
 }
 
-function yfront(z) = wb_ft + (wb_top - z)*lean;
-module weight_box() {
-    translate([wp_x - wp_w/2 - 2, 0, 0]) rotate([90, 0, 90]) linear_extrude(wp_w + 4)
-        polygon([[yfront(floor_top - 0.5), floor_top - 0.5], [wb_back, floor_top - 0.5], [wb_back, wb_top], [wb_ft, wb_top]]);
+// Weight: open tray on the floor, steel bar glued in. (A covered pocket can't be printed face-down:
+// its front-top edge would be the lowest point of the box and start in mid-air.)
+bar_l = 95.25; bar_w = 25.4; bar_h = 12.7;          // 3.75" x 1" x 1/2" steel flat bar (~240 g)
+tray_h = 4; tray_t = 2; tray_c = 0.4;               // lip height, lip thickness, clearance round the bar
+tray_ramp = 33;                                     // front lip ramp (deg from the floor); <= 36 prints face-down
+bar_y1 = wb_back; bar_y0 = bar_y1 - bar_w;          // bar sits where the old pocket held it
+module weight_box() {   // name kept for the build script
+    x0 = wp_x - bar_l/2 - tray_c; x1 = wp_x + bar_l/2 + tray_c; yi = bar_y0 - tray_c; z0 = floor_top - 0.5; z1 = floor_top + tray_h;
+    // front lip with printable ramp
+    translate([x0 - tray_t, 0, 0]) rotate([90, 0, 90]) linear_extrude(x1 - x0 + 2*tray_t)
+        polygon([[yi - tray_t - (z1 - z0)/tan(tray_ramp), z0], [yi, z0], [yi, z1], [yi - tray_t, z1]]);
+    // end lips (their front ends join the front lip)
+    for (xa = [x0 - tray_t, x1]) translate([xa, yi - tray_t, z0]) cube([tray_t, bar_y1 - (yi - tray_t), z1 - z0]);
 }
-module weight_cut() {
-    pz0 = floor_top; pz1 = floor_top + wp_h; off = 2/cos(22);
-    translate([wp_x - wp_w/2, 0, 0]) rotate([90, 0, 90]) linear_extrude(wp_w)
-        polygon([[yfront(pz0) + off, pz0], [wb_back + 1, pz0], [wb_back + 1, pz1], [yfront(pz1) + off, pz1]]);
-}
+module weight_bar() { translate([wp_x - bar_l/2, bar_y0, floor_top + 0.05]) cube([bar_l, bar_w, bar_h]); }
+if (part == "bar") weight_bar();
 module vent_cuts() {
     // intake: slots through the base, under the Pi side only (the speaker box covers the other side)
     for (i = [1:6]) translate([i*12 - 1.5, 48, -1]) cube([3, 18, 12]);
@@ -138,11 +144,10 @@ module spk_screw_holes()   {   // M2 x 5 pan head from outside: counterbore to a
             translate([0,0,-1]) cylinder(d = 2.4, h = spk_pad + 2, $fn = 24);           // clearance
         }
 }
-module spk_grille() {   // vertical slots like the vents, clipped to a circle
-    on_wall(spk_x, spk_s) intersection() {
-        translate([0,0,-3]) cylinder(d = grille_d, h = 8, $fn = 96);
-        for (i = [-6:6]) translate([i*5 - 1.25, -grille_d/2, -3]) cube([2.5, grille_d, 8]);
-    }
+module spk_grille() {   // round holes (hex grid) over the cone: same look as the exhaust vents; slots made long thin bars that print poorly face-down
+    p = 4.2; d = 3.0;    // pitch, hole size: about 46 % open
+    on_wall(spk_x, spk_s) for (j = [-9:9], i = [-9:9]) let(x = (i + (j % 2 == 0 ? 0 : 0.5))*p, y = j*p*0.866)
+        if (sqrt(x*x + y*y) <= grille_d/2 - d/2) translate([x, y, -3]) cylinder(d = d, h = 8, $fn = 20);
 }
 module spk_envelope() { // frame + magnet, for clearance checks
     on_wall(spk_x, spk_s) union() {
@@ -242,7 +247,6 @@ if (part == "mics")     mic_holes();
 if (part == "ring")      spacer_ring();
 if (part == "bosses")    pi_bosses();
 if (part == "wbox")      weight_box();
-if (part == "wcut")      weight_cut();
 if (part == "vents")     vent_solids();
 if (part == "relief")    display_relief();
 if (part == "pi")        pi_envelope();

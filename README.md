@@ -17,7 +17,9 @@ A desk stand for the **Raspberry Pi Touch Display 2 (7", landscape)** that house
 | `speaker-box.stl` | As exported: rim down | 80 × 80 × 60 mm. No supports (the inside must not have any). |
 | `pi-ports-cover.stl` | As exported: plate down | 64 × 42 × 3.6 mm. No supports. |
 
-Bed of at least 200 × 130 mm. PLA or PETG, 0.4 mm nozzle. Print the stand at high infill near the base if you want extra weight (as the original suggests).
+Bed of at least 200 × 130 mm. PETG recommended (PLA+ in a cool room), 0.4 mm nozzle, 0.2 mm layers, 4 perimeters, 25 % infill, no supports. All four parts were slice-checked in PrusaSlicer 2.7 with no stability warnings: about 246 g and 23 h in total.
+
+**Sending it to a print shop?** `print/` has everything they need: `print-instructions.pdf` (two pages: settings, orientation, features to protect, hand-over checklist), ready-to-slice PrusaSlicer projects `plate1-stand.3mf`, `plate2-frame.3mf`, `plate3-speaker-box-and-cover.3mf`, and `petg-profile.ini`.
 
 ## Hardware
 
@@ -33,7 +35,7 @@ Bed of at least 200 × 130 mm. PLA or PETG, 0.4 mm nozzle. Print the stand at hi
 | Short USB-A → USB-C **data** cable, **right-angle on both ends** | Pi → ReSpeaker; the Pi's USB ports have 21 mm to the side cover |
 | 10 × M2 × 5 pan-head self-tapping | the only screw in the build: 4 for the Pi, 2 for the ReSpeaker, 4 from the back into the speaker box (heads sit in recessed holes) |
 | Foam tape: 2 mm (spacer ring), 1 mm (mic squares), 3 mm ring (speaker front), thin gasket (box rim) | |
-| Optional: 1" × ½" steel flat bar, 3¾" long (~240 g) | weight pocket in the base |
+| Optional: 1" × ½" steel flat bar, 3¾" long (~240 g) | glued into the weight tray on the floor |
 | Optional: rubber feet, hot glue | |
 
 ## Features
@@ -44,9 +46,9 @@ Bed of at least 200 × 130 mm. PLA or PETG, 0.4 mm nozzle. Print the stand at hi
 - **Pi ports access**: clip-on cover on the right side (as you face the screen) over the USB / Ethernet end; lift it off with a fingernail at the notch under its lower front corner. See `images/pi-ports-cover.png`.
 - **ReSpeaker Lite** on two M2 standoffs, mics sealed to two back-wall pinholes with small foam squares on raised pads.
 - **MUTE** is a press-in flexure button printed into the back wall (with grip ridges); **USR** is a poke hole. Both engraved.
-- **3" speaker** in its own sealed box (~160 cm³), clamped by four screws from the back; grille in the back wall.
+- **3" speaker** in its own sealed box (~160 cm³), clamped by four screws from the back; round-hole grille in the back wall.
 - **Ventilation**: intake slots under the Pi, round exhaust holes along the top of the back wall.
-- **Weight pocket** for a steel bar, loaded from inside before the display goes on.
+- **Weight tray** on the floor for a steel bar (glued in), fitted before the display goes on.
 
 ## Assembly order
 
@@ -54,7 +56,7 @@ Bed of at least 200 × 130 mm. PLA or PETG, 0.4 mm nozzle. Print the stand at hi
 2. Speaker: solder the JST lead (leave a little slack inside the box, tack it with hot glue), 3 mm foam ring on the wall around the grille, speaker face-down on its pads, gasket on the box rim, box over the speaker, four M2 × 5 screws from the back (into the recessed holes). Seal the wire hole with hot glue.
 3. ReSpeaker: foam squares on the two mic pads, pierce at the pinholes, board on its standoffs (mics to the wall), two M2 × 5 screws.
 4. Pi: four M2 × 5 screws. Connect the ReSpeaker (USB), speaker (JST-PH), display ribbon (300 mm, fold the slack flat) and the display's GPIO power lead.
-5. Weight bar into its pocket (dab of hot glue).
+5. Weight bar into its tray (construction adhesive or hot glue).
 6. 2 mm foam tape on the spacer ring, display on the ring, frame snapped on (feed cables first).
 7. Side cover on; rubber feet on the base.
 

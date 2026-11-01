@@ -52,7 +52,7 @@ cin=[-170,-420,300]; tI=[-2,48,48]
 Lm=[dict(p=[wp(-5+2.46,75+31.56,3),wp(-5+60.16,75+2.66,3)],t='ReSpeaker standoffs (2, M2)',at=[1380,110]),
     dict(p=[wp(-5+5.49,92,0.9),wp(-5+76.49,92,0.9)],t='Mic pads',at=[1380,220]),
     dict(p=wp(-1.47,80.74,0.1),t='MUTE tab',at=[1380,320]),
-    dict(p=[40,40,14],t='Weight pocket\n(opens at the back)',at=[1380,720]),
+    dict(p=[40,40,14],t='Weight tray\n(steel bar glued in)',at=[1380,720]),
     dict(p=[wp(-11.2+a,15+b,5) for a in [3.5,61.5] for b in [3.5,52.5]],t='Pi 5 standoffs (4, M2)',at=[1380,950]),
     dict(p=[wp(-52.15+i*30,42+j*30,3) for i in [-1,1] for j in [-1,1]],t='Speaker pads (4)',at=[330,170]),
     dict(p=wp(-52.15,42,0),t='Speaker grille',at=[330,400]),
