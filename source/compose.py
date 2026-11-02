@@ -9,7 +9,7 @@ rails = L('piece_rails.stl').intersection(trim, engine='manifold').difference(L(
 adds_late = ['piece_grip.stl']
 for add in ['piece_tabs.stl','piece_ring.stl','piece_bosses.stl','piece_wbox.stl','piece_spkpads.stl','piece_rspad.stl']: s = s.union(L(add), engine='manifold')
 s = s.union(rails, engine='manifold')
-for cut in ['vents','grille','mics','spkholes','poke','labels','window','backlabel']: s = s.difference(L(f'piece_{cut}.stl'), engine='manifold')
+for cut in ['vents','grille','mics','spkholes','poke','labels','window','backlabel','screwnote']: s = s.difference(L(f'piece_{cut}.stl'), engine='manifold')
 for add in adds_late: s = s.union(L(add), engine='manifold')
 print('stand', s.extents.round(2), 'watertight', s.is_watertight, 'bodies', len(s.split(only_watertight=False)), 'vol cm3', round(s.volume/1000,1))
 s.export('stand_use.stl')

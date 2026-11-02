@@ -17,9 +17,12 @@ A desk stand for the **Raspberry Pi Touch Display 2 (7", landscape)** that house
 | `speaker-box.stl` | As exported: rim down | 80 × 80 × 60 mm. No supports (the inside must not have any). |
 | `pi-ports-cover.stl` | As exported: plate down | 64 × 42 × 3.6 mm. No supports. |
 
-Bed of at least 200 × 130 mm. PETG recommended (PLA+ in a cool room), 0.4 mm nozzle, 0.2 mm layers, 4 perimeters, 25 % infill, no supports. All four parts were slice-checked in PrusaSlicer 2.7 with no stability warnings: about 246 g and 23 h in total.
+Materials: **matte black ASA** for the stand, speaker box and cover; the frame in **Spectrum PET-G MATT Olive Green (RAL 6003)** with fuzzy skin on its outside band only (0.05 / 0.25 mm). 0.4 mm nozzle, 0.2 mm layers, 4 walls, 25 % infill, **no supports**. Bed of at least 200 × 130 mm (both plates below are laid out for 256 × 256). All parts were slice-checked (PrusaSlicer 2.7): no stability warnings, about 246 g in total.
 
-**Sending it to a print shop?** `print/` has everything they need: `print-instructions.pdf` (two pages: settings, orientation, features to protect, hand-over checklist), ready-to-slice PrusaSlicer projects `plate1-stand.3mf`, `plate2-frame.3mf`, `plate3-speaker-box-and-cover.3mf`, and `petg-profile.ini`.
+**Sending it to a print shop (Bambu):** `print/` holds exactly what the printer gets and nothing else:
+`TD2-plate-A-black-ASA-stand-box-cover.3mf` and `TD2-plate-B-olive-frame.3mf` (parts placed in print orientation; the frame's fuzzy skin is painted in), a plain-language note `TD2-note-for-Jayed.txt` and one picture `TD2-what-to-check.png`.
+
+**Screw pilots and mic holes are printed undersize on purpose: drill them on site.** See [`docs/on-site-fixes.md`](docs/on-site-fixes.md) (1/16" and 3/32" bits). Design decisions and their reasons: [`docs/design-notes.md`](docs/design-notes.md).
 
 ## Hardware
 
@@ -33,6 +36,7 @@ Bed of at least 200 × 130 mm. PETG recommended (PLA+ in a cool room), 0.4 mm no
 | Adafruit 3" speaker, 4 Ω 3 W | |
 | JST-PH 2.0 mm 2-pin lead | speaker → ReSpeaker |
 | Short USB-A → USB-C **data** cable, **right-angle on both ends** | Pi → ReSpeaker; the Pi's USB ports have 21 mm to the side cover |
+| 1/16" and 3/32" drill bits, hobby knife | on-site fixes: pilots and mic holes are printed undersize |
 | 10 × M2 × 5 pan-head self-tapping | the only screw in the build: 4 for the Pi, 2 for the ReSpeaker, 4 from the back into the speaker box (heads sit in recessed holes) |
 | Foam tape: 2 mm (spacer ring), 1 mm (mic squares), 3 mm ring (speaker front), thin gasket (box rim) | |
 | Optional: 1" × ½" steel flat bar, 3¾" long (~240 g) | glued into the weight tray on the floor |
@@ -52,6 +56,7 @@ Bed of at least 200 × 130 mm. PETG recommended (PLA+ in a cool room), 0.4 mm no
 
 ## Assembly order
 
+0. Do the on-site fixes (`docs/on-site-fixes.md`): drill the pilots and mic holes, clear the MUTE slot, test-fit the frame and cover.
 1. Flash the microSD and insert it into the Pi.
 2. Speaker: solder the JST lead (leave a little slack inside the box, tack it with hot glue), 3 mm foam ring on the wall around the grille, speaker face-down on its pads, gasket on the box rim, box over the speaker, four M2 × 5 screws from the back (into the recessed holes). Seal the wire hole with hot glue.
 3. ReSpeaker: foam squares on the two mic pads, pierce at the pinholes, board on its standoffs (mics to the wall), two M2 × 5 screws.

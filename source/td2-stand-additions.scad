@@ -16,7 +16,7 @@ spacer   = cavity - glass_max - foam_min;   // = 4.55: foam takes up 5.95-6.95 m
 pi_x0     = -11.2;  // Pi left edge (x); puts the Pi's USB-C right above the rear cable hole
 pi_s0     = 15;     // Pi bottom edge, measured up the back wall from the floor
 standoff  = 5;      // standoff height off the wall
-screw_d   = 1.6;    // M2 self-tapping pilot (one screw size throughout: M2 x 5 pan head)
+screw_d   = 1.4;    // M2 pilot, printed undersize: drill 1/16" on site (one screw size throughout: M2 x 5 pan head)
 boss_d    = 6.5;
 tail      = 12;     // printable tail length
 
@@ -37,7 +37,7 @@ spk_sq = 77.8;
 spk_tab = 60;      // [CHECK] tab hole pattern (assumed 60 x 60 square)
 spk_pad = 3;       // pads the frame screws into; seal the gap with 3 mm foam ring
 spk_seat = 1.5;    // screw head seat, measured from the inner wall face into the pad (leaves 1.5 mm under the head)
-spk_screw_d = 1.6; // M2 self-tapping pilot in the speaker box
+spk_screw_d = 1.4; // M2 pilot in the speaker box, drill 1/16" on site
 grille_d = 66;     // grille opening over the cone
 
 // ---------- ReSpeaker Lite v1.1 (from Seeed's STEP model) ----------
@@ -168,7 +168,7 @@ module rs_rails() {   // (name kept for the build script) -> two standoffs with 
             translate([0,0,-1]) cylinder(d = 5, h = rs_gap + 1, $fn = 32);
             translate([-2.5, 2.5 + 6, -1]) cube([5, 0.01, 1]);
         }
-        translate([0,0,-0.5]) cylinder(d = 1.6, h = rs_gap + 1, $fn = 16);   // M2 self-tapping pilot (4 mm deep incl. 1 mm into the wall)
+        translate([0,0,-0.5]) cylinder(d = screw_d, h = rs_gap + 1, $fn = 16);   // M2 pilot, drill 1/16" on site
     }
 }
 module rs_envelope() { // board + top-side parts (4 mm general, JST-PH 6.8 mm) + right-angle USB-C plug, for clearance checks
@@ -250,3 +250,13 @@ if (part == "wbox")      weight_box();
 if (part == "vents")     vent_solids();
 if (part == "relief")    display_relief();
 if (part == "pi")        pi_envelope();
+
+// ---- engraved hardware note on the inside of the right side wall, above the cover opening (read from the open front).
+// On the side wall it prints vertically; on the back wall the letter counters would start in mid-air.
+module screw_note() {
+    multmatrix([[0,0,-1, 93.1],[-1,0,0, 33],[0,1,0, 84],[0,0,0,1]]) translate([0, 0, -0.5]) linear_extrude(1.5) {
+        translate([0,  2.3]) text("M2x5 SCREWS", size = 2.4, font = "DejaVu Sans:style=Bold", halign = "center", valign = "center");
+        translate([0, -2.3]) text("DRILL 1/16\"", size = 2.4, font = "DejaVu Sans:style=Bold", halign = "center", valign = "center");
+    }
+}
+if (part == "screwnote") screw_note();

@@ -18,7 +18,7 @@ cav   = local_cyl(0,0, 38.8, RIM-1, RIM+60).intersection(local_box(-38.5,38.5,-3
 box = outer.difference(cav, engine='manifold')
 for i in (-1,1):
     for j in (-1,1):
-        box = box.difference(local_cyl(i*30, j*30, 0.8, RIM-1, RIM+10, 32), engine='manifold')   # 1.6 mm pilot (M2 x 5 self-tapping from the back)
+        box = box.difference(local_cyl(i*30, j*30, 0.7, RIM-1, RIM+10, 32), engine='manifold')   # 1.4 mm pilot, drill 1/16" on site (M2 x 5 from the back)
 w = trimesh.creation.cylinder(radius=1.6, height=20, sections=24); w.apply_transform(trimesh.transformations.rotation_matrix(np.pi/2,[0,1,0]))
 w.apply_translation([34, -20, RIM+5]); w.apply_transform(Wspk); box = box.difference(w, engine='manifold')
 print('box watertight', box.is_watertight, 'bodies', len(box.split(only_watertight=False)), 'air cm3', round(cav.volume/1000,1))
