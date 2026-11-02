@@ -31,7 +31,7 @@ So later questions don't reopen settled points. Newest at the bottom of each sec
 ## Materials and finish
 - **Stand, speaker box, cover: matte black ASA** (playbook default; better for the Pi's heat than PETG/PLA).
 - **Frame: Spectrum PET-G MATT Olive Green (RAL 6003)**, the user's colour choice. ASA and PETG shrink slightly differently: the frame snap fit is on the on-site fixes list.
-- **Fuzzy skin on the frame's outside band only**, painted per triangle in the 3MF (survives Bambu's geometry-only import). **0.05 mm / 0.25 mm** (playbook: 0.12 / 0.3 was too coarse and sparkly). No fuzzy skin on the stand: the back has fit-critical holes and engraving.
+- **No fuzzy skin (dropped 2026-11-02).** Tried on the frame's outside band (painted, 0.05 / 0.25), but the user doesn't like how fuzzy skin looks, and making it finer needs trial prints, which the printer doesn't do. Plain matte print instead. Optional: a grey Scotch-Brite pad or 320–400 grit dulls the layer lines to satin.
 
 ## Print handoff
 - **Two Bambu 3MFs, one per material**: plate A black ASA (stand + box + cover), plate B olive (frame). All four parts don't fit one 256 mm plate, and plates and per-object filament don't survive a geometry-only import.

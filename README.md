@@ -17,10 +17,10 @@ A desk stand for the **Raspberry Pi Touch Display 2 (7", landscape)** that house
 | `speaker-box.stl` | As exported: rim down | 80 × 80 × 60 mm. No supports (the inside must not have any). |
 | `pi-ports-cover.stl` | As exported: plate down | 64 × 42 × 3.6 mm. No supports. |
 
-Materials: **matte black ASA** for the stand, speaker box and cover; the frame in **Spectrum PET-G MATT Olive Green (RAL 6003)** with fuzzy skin on its outside band only (0.05 / 0.25 mm). 0.4 mm nozzle, 0.2 mm layers, 4 walls, 25 % infill, **no supports**. Bed of at least 200 × 130 mm (both plates below are laid out for 256 × 256). All parts were slice-checked (PrusaSlicer 2.7): no stability warnings, about 246 g in total.
+Materials: **matte black ASA** for the stand, speaker box and cover; the frame in **Spectrum PET-G MATT Olive Green (RAL 6003)**, plain matte print (no fuzzy skin). 0.4 mm nozzle, 0.2 mm layers, 4 walls, 25 % infill, **no supports**. Bed of at least 200 × 130 mm (both plates below are laid out for 256 × 256). All parts were slice-checked (PrusaSlicer 2.7): no stability warnings, about 246 g in total.
 
 **Sending it to a print shop (Bambu):** `print/` holds exactly what the printer gets and nothing else:
-`TD2-plate-A-black-ASA-stand-box-cover.3mf` and `TD2-plate-B-olive-frame.3mf` (parts placed in print orientation; the frame's fuzzy skin is painted in), a plain-language note `TD2-note-for-Jayed.txt` and one picture `TD2-what-to-check.png`.
+`TD2-plate-A-black-ASA-stand-box-cover.3mf` and `TD2-plate-B-olive-frame.3mf` (parts placed in print orientation), a plain-language note `TD2-note-for-Jayed.txt` and one picture `TD2-what-to-check.png`.
 
 **Screw pilots and mic holes are printed undersize on purpose: drill them on site.** See [`docs/on-site-fixes.md`](docs/on-site-fixes.md) (1/16" and 3/32" bits). Design decisions and their reasons: [`docs/design-notes.md`](docs/design-notes.md).
 

@@ -16,14 +16,11 @@ FILE 2: TD2-plate-B-olive-frame.3mf
    - Support > Enable support = OFF (nothing on these parts needs support)
    File 1 only:
    - Others > Bed adhesion > Brim type = Outer brim only, Brim width = 5 mm
-   File 2 only (the frame):
-   - Others > Fuzzy Skin = "None (allow paint)", thickness = 0.05 mm, point distance = 0.25 mm
-     (the outside edge of the frame is already painted for fuzzy skin)
 4. After slicing, the preview should show:
    - File 1: the stand sitting on its open side with the holes facing up. No support anywhere. A brim around the parts.
      The small U-shaped slot (MUTE button) and the 2 tiny mic holes should show as gaps.
      The text on top reads backwards from above. That's correct.
-   - File 2: the frame lying flat. Only the OUTSIDE edge looks rough (fuzzy). The inside walls look smooth.
+   - File 2: the frame lying flat, front face down. No fuzzy skin anywhere (plain print).
 5. Don't rotate or re-orient anything.
 
 I couldn't open these files in Bambu Studio myself, so please check the preview against the picture (TD2-what-to-check.png). If anything looks different, message me before printing.

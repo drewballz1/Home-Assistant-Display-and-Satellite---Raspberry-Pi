@@ -42,7 +42,7 @@ items_A=[('stand',stand,None,(128, sy)),
          ('speaker-box',box,None,(10+box.extents[0]/2+20, 10+box.extents[1]/2+5)),
          ('pi-ports-cover',cover,None,(10+box.extents[0]+20+15+cover.extents[0]/2+20, 10+cover.extents[1]/2+25))]
 pf=frame_paint(frame)
-items_B=[('frame',frame,pf,(128,128))]
+items_B=[('frame',frame,None,(128,128))]   # fuzzy skin dropped (2026-11-02): plain matte print
 write('TD2-plate-A-black-ASA-stand-box-cover.3mf', items_A)
 write('TD2-plate-B-olive-frame.3mf', items_B)
 # layout report
