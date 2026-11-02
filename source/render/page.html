@@ -26,9 +26,12 @@ window.renderScene = async (S) => {
     const buf=await (await fetch(p.f)).arrayBuffer(); const g=ld.parse(buf); g.computeVertexNormals();
     const pc=p.noclip?[]:clips;
     const mat=new THREE.MeshStandardMaterial({color:p.c,roughness:p.rough??0.7,metalness:p.metal??0.0,side:THREE.DoubleSide,
-       transparent:p.o!==undefined,opacity:p.o??1,clippingPlanes:pc,flatShading:false,polygonOffset:true,polygonOffsetFactor:1,polygonOffsetUnits:1});
+       transparent:p.o!==undefined,opacity:p.o??1,clippingPlanes:pc,flatShading:false,polygonOffset:true,polygonOffsetFactor:0,polygonOffsetUnits:2});
     const m=new THREE.Mesh(g,mat); if(p.off) m.position.set(...p.off); m.castShadow=!!S.shadow; m.receiveShadow=false; sc.add(m);
-    if(p.e!==false){ const eg=new THREE.EdgesGeometry(g,p.ea||28);
+    if(p.e!==false){ let eg;
+      const ef=p.f.replace(/\.stl$/,'.edges'); const er=await fetch(ef);
+      if(er.ok && !p.ea){ const ab=await er.arrayBuffer(); eg=new THREE.BufferGeometry(); eg.setAttribute('position',new THREE.BufferAttribute(new Float32Array(ab),3)); }
+      else eg=new THREE.EdgesGeometry(g,p.ea||28);
       const lm=new THREE.LineSegments(eg,new THREE.LineBasicMaterial({color:p.ec||'#222',transparent:true,opacity:p.eo??0.55,clippingPlanes:pc})); if(p.off) lm.position.set(...p.off); sc.add(lm);}
     if(p.cap && clips.length){ // section cap: stencil trick
       const pl=clips[0];
