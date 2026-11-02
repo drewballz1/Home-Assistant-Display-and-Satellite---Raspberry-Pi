@@ -59,7 +59,7 @@ Materials: **matte black ASA** for the stand, speaker box and cover; the frame i
 0. Do the on-site fixes (`docs/on-site-fixes.md`): drill the pilots and mic holes, clear the MUTE slot, test-fit the frame and cover.
 1. Flash the microSD and insert it into the Pi.
 2. Speaker: solder the JST lead (leave a little slack inside the box, tack it with hot glue), 3 mm foam ring on the wall around the grille, speaker face-down on its pads, gasket on the box rim, box over the speaker, four M2 × 5 screws from the back (into the recessed holes). Seal the wire hole with hot glue.
-3. ReSpeaker: foam squares on the two mic pads, pierce at the pinholes, board on its standoffs (mics to the wall), two M2 × 5 screws.
+3. ReSpeaker: foam squares on the two mic pads, each with a clean **Ø2 mm hole** lined up with its pinhole (a 2 mm hollow punch, or a 5/64" bit twisted by hand; don't just pierce it, a pin-prick muffles the mic). The seal must be airtight all round. Board on its standoffs (mics to the wall), two M2 × 5 screws.
 4. Pi: four M2 × 5 screws. Connect the ReSpeaker (USB), speaker (JST-PH), display ribbon (300 mm, fold the slack flat) and the display's GPIO power lead.
 5. Weight bar into its tray (construction adhesive or hot glue).
 6. 2 mm foam tape on the spacer ring, display on the ring, frame snapped on (feed cables first).

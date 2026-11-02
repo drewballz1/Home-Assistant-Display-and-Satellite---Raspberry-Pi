@@ -11,7 +11,8 @@ No test prints, so every fit-critical feature can be adjusted by hand. Do these 
 |---|---|---|
 | Screw pilots: 4 Pi + 2 ReSpeaker standoffs (stand), 4 in the speaker box | Ø1.4 mm | Drill **1/16"** to the bottom of each standoff/pilot. Don't go through the back wall: the standoffs are only 5 mm (Pi) and 3 mm (ReSpeaker) tall. |
 | 4 speaker screw holes, back of the stand | Ø2.4 mm through, Ø4.4 recess | If an M2 screw won't pass, drill **3/32"** through. Leave the recess as printed. |
-| 2 mic pinholes, back wall | Ø1.5 mm | Drill **1/16"** by hand, straight through. Don't go bigger: the foam seal relies on a small hole. |
+| 2 mic pinholes, back wall | Ø1.5 mm | Drill **1/16"** by hand, straight through. Bigger doesn't help the sound. |
+| Foam squares on the mic pads | — | Cut a clean **Ø2 mm hole** in each, lined up with the pinhole (2 mm hollow punch or a 5/64" bit twisted by hand). Don't just pierce: a pin-prick muffles the mic. Seal airtight all round. |
 | USR poke hole | Ø2.6 mm | Clear with a pin if strung. |
 
 ## Moving / snap parts
