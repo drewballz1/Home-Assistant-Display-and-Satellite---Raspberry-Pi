@@ -9,6 +9,7 @@ FILE 2: TD2-plate-B-olive-frame.3mf
   Material: Spectrum PET-G MATT Olive Green (RAL 6003), or the closest matte olive you have (check with me first). 0.20 mm layers.
 
 1. Open the .3mf. If it says "not from Bambu Lab, load geometry only", that's normal. Click OK.
+   If it also says it repaired a few mesh errors, that's fine too (tiny flat slivers, no effect on the print).
 2. Pick your printer, the material above, 0.20mm Standard.
 3. Change only these (both files):
    - Strength > Walls > Wall loops = 4
